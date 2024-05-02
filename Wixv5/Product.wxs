@@ -1,0 +1,19 @@
+﻿<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
+	<Package Name="Wix54" Language="1033" Version="1.0.0.0" Manufacturer="WixTester" UpgradeCode="36689809-b2c4-4b80-8d9f-6ed1a658275d" InstallerVersion="200"><MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+		<DirectoryRef Id="INSTALLFOLDER">
+			<Component Id="test" Guid="95AB91F2-7DFE-4D1C-8114-BF1D07AD440C" Bitness="always64">
+				<File Id="test.txt" Source="Files\test.txt" KeyPath="no" Checksum="no" />
+			</Component>
+		</DirectoryRef>
+
+		<Feature Id="MainApplication" Title="Main Application" Level="1">
+			<ComponentRef Id="test" />
+		</Feature>
+			<StandardDirectory Id="ProgramFiles64Folder">
+				<Directory Id="INSTALLFOLDER" Name="Wixv5" />
+			</StandardDirectory>
+		
+			<!-- Breaks when My Documents is on network drive -->
+			<StandardDirectory Id="PersonalFolder" />
+		</Package>
+</Wix>

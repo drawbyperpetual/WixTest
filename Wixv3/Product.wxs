@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Product Id="*" Name="Wixv3" Language="1033" Version="1.0.0.0" Manufacturer="WixTester" UpgradeCode="36689809-b2c4-4b80-8d9f-6ed1a658275d">
+		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
+		<MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+		<MediaTemplate />
+
+		<Directory Id="TARGETDIR" Name="SourceDir">
+			<Directory Id="ProgramFiles64Folder">
+				<Directory Id="INSTALLFOLDER" Name="Wixv3" />
+			</Directory>
+
+			<!-- Breaks when My Documents is on network drive -->
+			<Directory Id="PersonalFolder" Name="UserHomeDocuments" />
+		</Directory>
+
+		<DirectoryRef Id="INSTALLFOLDER">
+			<Component Id="test" Guid="95AB91F2-7DFE-4D1C-8114-BF1D07AD440C" Win64="yes" >
+				<File Id="test.txt" Source="Files\test.txt" KeyPath="no" Checksum="no"/>
+			</Component>
+		</DirectoryRef>
+
+		<Feature Id="MainApplication" Title="Main Application" Level="1" >
+			<ComponentRef Id="test" />
+		</Feature>
+	</Product>
+</Wix>
